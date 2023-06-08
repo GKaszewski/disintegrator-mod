@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "disintegratormod",
+  "version": "${version}",
+  "name": "Disintegrator Mod",
+  "description": "A mod that adds a disintegrator to the game. It disintegrates blocks and items.",
+  "authors": [
+    "Gabriel Kaszewski"
+  ],
+  "contact": {
+    "homepage": "https://gabrielkaszewski.dev/",
+    "sources": "https://github.com/GKaszewski/disintegrator-mod"
+  },
+  "license": "MIT",
+  "icon": "assets/disintegratormod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.gabrielkaszewski.disintegratormod.DisintegratorMod"
+    ],
+    "client": [
+      "dev.gabrielkaszewski.disintegratormod.DisintegratorModClient"
+    ],
+    "fabric-datagen": [
+      "dev.gabrielkaszewski.disintegratormod.DisintegratorModDataGenerator"
+    ]
+  },
+  "mixins": [
+    "disintegrator.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": "~1.19.4",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+  }
+}
