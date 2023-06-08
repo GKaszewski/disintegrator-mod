@@ -139,7 +139,6 @@ public class DisintegratorBlockEntity extends BlockEntity implements NamedScreen
         CraftingRecipe recipe = getRecipe(inputStack, entity);
         if (recipe == null) return false;
         disintegrateItem(recipe, entity);
-
         return true;
     }
 
@@ -150,8 +149,6 @@ public class DisintegratorBlockEntity extends BlockEntity implements NamedScreen
             EnchantmentHelper.set(enchantmentMap, outputStack);
             entity.setStack(1, outputStack);
             inputStack.removeSubNbt("Enchantments");
-            ItemScatterer.spawn(entity.getWorld(), entity.getPos().getX(), entity.getPos().getY(), entity.getPos().getZ(), inputStack);
-            entity.setStack(0, ItemStack.EMPTY);
             return true;
         }
 
