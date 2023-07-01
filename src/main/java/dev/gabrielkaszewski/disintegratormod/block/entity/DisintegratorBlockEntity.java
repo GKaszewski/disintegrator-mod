@@ -135,7 +135,12 @@ public class DisintegratorBlockEntity extends BlockEntity implements NamedScreen
         entity.setStack(0, inputStack);
     }
 
+    private static boolean checkIfItemIsPlank(ItemStack itemStack) {
+        return itemStack.getItem() == Items.OAK_PLANKS || itemStack.getItem() == Items.SPRUCE_PLANKS || itemStack.getItem() == Items.BIRCH_PLANKS || itemStack.getItem() == Items.JUNGLE_PLANKS || itemStack.getItem() == Items.ACACIA_PLANKS || itemStack.getItem() == Items.DARK_OAK_PLANKS || itemStack.getItem() == Items.CRIMSON_PLANKS || itemStack.getItem() == Items.WARPED_PLANKS;
+    }
+
     private static boolean handleItem(ItemStack inputStack, DisintegratorBlockEntity entity) {
+        if (checkIfItemIsPlank(inputStack)) return false;
         CraftingRecipe recipe = getRecipe(inputStack, entity);
         if (recipe == null) return false;
         disintegrateItem(recipe, entity);
