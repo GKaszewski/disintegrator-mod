@@ -1,15 +1,15 @@
 package dev.gabrielkaszewski.disintegratormod.screen;
 
 import dev.gabrielkaszewski.disintegratormod.DisintegratorMod;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 
 public class ModScreenHandlers {
-    public static ScreenHandlerType<DisintegratorScreenHandler> DISINTEGRATOR_SCREEN_HANDLER = Registry.register(
-            Registries.SCREEN_HANDLER,
-            new Identifier(DisintegratorMod.MOD_ID, "disintegrator"),
-            new ScreenHandlerType<>(DisintegratorScreenHandler::new, null)
-    );
+    public static ScreenHandlerType<DisintegratorScreenHandler> DISINTEGRATOR_SCREEN_HANDLER;
+
+    public static void registerModScreenHandlers() {
+        DisintegratorMod.LOGGER.info("Registering mod screen handlers...");
+        DISINTEGRATOR_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier(DisintegratorMod.MOD_ID, "disintegrator"), DisintegratorScreenHandler::new);
+    }
 }

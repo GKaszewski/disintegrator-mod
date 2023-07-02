@@ -2,6 +2,7 @@ package dev.gabrielkaszewski.disintegratormod;
 
 import dev.gabrielkaszewski.disintegratormod.block.ModBlocks;
 import dev.gabrielkaszewski.disintegratormod.block.entity.ModBlockEntities;
+import dev.gabrielkaszewski.disintegratormod.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -15,5 +16,7 @@ public class DisintegratorMod implements ModInitializer {
 	public void onInitialize() {
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerAllBlockEntities();
+		ModScreenHandlers.registerModScreenHandlers();
+
 	}
 }
