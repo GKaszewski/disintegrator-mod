@@ -6,9 +6,9 @@
 name: build
 on:
     push:
-        branches: [*]
+        branches: * # Build all branches
     pull_request:
-        branches: [*]
+        branches: * # Build all branches
 
 jobs:
   build:
