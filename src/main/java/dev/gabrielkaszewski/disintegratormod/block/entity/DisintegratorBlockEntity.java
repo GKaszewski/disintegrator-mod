@@ -94,12 +94,32 @@ public class DisintegratorBlockEntity extends BlockEntity implements NamedScreen
         RecipeManager recipeManager = Objects.requireNonNull(entity.getWorld()).getRecipeManager();
         if (recipeManager == null) return null;
         Identifier inputStackId = Registries.ITEM.getId(inputStack.getItem());
-
         try {
             return (CraftingRecipe) recipeManager.get(inputStackId).orElse(null);
         } catch (Exception e) {
             return null;
         }
+    }
+
+    private static boolean preventDupe(ItemStack inputStack, DisintegratorBlockEntity entity) {
+        Identifier inputStackId = Registries.ITEM.getId(inputStack.getItem());
+
+        return !inputStackId.equals(Registries.ITEM.getId(Items.DIAMOND)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.EMERALD)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.COPPER_INGOT)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.IRON_INGOT)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.GOLD_INGOT)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.LAPIS_LAZULI)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.SLIME_BALL)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.WHEAT)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.RAW_COPPER)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.RAW_IRON)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.RAW_GOLD)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.REDSTONE)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.COAL)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.GOLD_NUGGET)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.IRON_NUGGET)) &&
+                !inputStackId.equals(Registries.ITEM.getId(Items.NETHERITE_INGOT));
     }
 
     private static void disintegrateItem(CraftingRecipe recipe, DisintegratorBlockEntity entity) {
@@ -138,7 +158,9 @@ public class DisintegratorBlockEntity extends BlockEntity implements NamedScreen
         return itemStack.getItem() == Items.OAK_PLANKS || itemStack.getItem() == Items.SPRUCE_PLANKS || itemStack.getItem() == Items.BIRCH_PLANKS || itemStack.getItem() == Items.JUNGLE_PLANKS || itemStack.getItem() == Items.ACACIA_PLANKS || itemStack.getItem() == Items.DARK_OAK_PLANKS || itemStack.getItem() == Items.CRIMSON_PLANKS || itemStack.getItem() == Items.WARPED_PLANKS;
     }
 
+
     private static boolean handleItem(ItemStack inputStack, DisintegratorBlockEntity entity) {
+        if (!preventDupe(inputStack, entity)) return false;
         if (checkIfItemIsPlank(inputStack)) return false;
         CraftingRecipe recipe = getRecipe(inputStack, entity);
         if (recipe == null) return false;
