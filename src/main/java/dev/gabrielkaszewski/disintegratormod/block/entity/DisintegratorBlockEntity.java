@@ -9,8 +9,10 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.SmithingTemplateItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.Ingredient;
@@ -103,6 +105,8 @@ public class DisintegratorBlockEntity extends BlockEntity implements NamedScreen
 
     private static boolean preventDupe(ItemStack inputStack, DisintegratorBlockEntity entity) {
         Identifier inputStackId = Registries.ITEM.getId(inputStack.getItem());
+        Item item = inputStack.getItem();
+        if (item.getClass() == SmithingTemplateItem.class) return false;
 
         return !inputStackId.equals(Registries.ITEM.getId(Items.DIAMOND)) &&
                 !inputStackId.equals(Registries.ITEM.getId(Items.EMERALD)) &&
@@ -155,7 +159,7 @@ public class DisintegratorBlockEntity extends BlockEntity implements NamedScreen
     }
 
     private static boolean checkIfItemIsPlank(ItemStack itemStack) {
-        return itemStack.getItem() == Items.OAK_PLANKS || itemStack.getItem() == Items.SPRUCE_PLANKS || itemStack.getItem() == Items.BIRCH_PLANKS || itemStack.getItem() == Items.JUNGLE_PLANKS || itemStack.getItem() == Items.ACACIA_PLANKS || itemStack.getItem() == Items.DARK_OAK_PLANKS || itemStack.getItem() == Items.CRIMSON_PLANKS || itemStack.getItem() == Items.WARPED_PLANKS;
+        return itemStack.getItem() == Items.OAK_PLANKS || itemStack.getItem() == Items.SPRUCE_PLANKS || itemStack.getItem() == Items.BIRCH_PLANKS || itemStack.getItem() == Items.JUNGLE_PLANKS || itemStack.getItem() == Items.ACACIA_PLANKS || itemStack.getItem() == Items.DARK_OAK_PLANKS || itemStack.getItem() == Items.CRIMSON_PLANKS || itemStack.getItem() == Items.WARPED_PLANKS || itemStack.getItem() == Items.CHERRY_PLANKS;
     }
 
 
